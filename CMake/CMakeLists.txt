@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 3.17.0)
-
+cmake_minimum_required(VERSION 3.15.0)
 project(RPI_GPIO_HANDLER)
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
 add_subdirectory(src)
+set(SOURCES src/main.c src/utils.c ${HEADERS})
+set(HEADERS include/utils.h)
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE ../include)
