@@ -9,8 +9,10 @@
 #include "../include/utils.h"
 
 
-void loop(char * usr_c) {
+void loop() {
     msg_command_options();
+    // Init user command char pointer
+    char * usr_c = malloc(sizeof(char));
     while(1) {
         usr_command(usr_c);
         switch (*usr_c) {
@@ -27,15 +29,14 @@ void loop(char * usr_c) {
         }
         }
     }
+    free(usr_c);
 }
 
 int main(int argc, char const *argv[])
 {
-    // Init user command char pointer
-    char * usr_c = malloc(sizeof(char));
     // Intro message
     msg_intro();
     // main loop
-    loop(usr_c);
+    loop();
     return 0;
 }
