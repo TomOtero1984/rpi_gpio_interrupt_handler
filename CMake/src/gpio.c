@@ -1,10 +1,8 @@
 #include "../include/gpio.h"
 
-void setup_io()
-{
+void setup_io() {
     /* open /dev/mem */
-    if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0)
-    {
+    if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0) {
         printf("can't open /dev/mem \n");
         exit(-1);
     }
@@ -21,8 +19,7 @@ void setup_io()
 
     close(mem_fd); //No need to keep mem_fd open after mmap
 
-    if (gpio_map == MAP_FAILED)
-    {
+    if (gpio_map == MAP_FAILED) {
         printf("mmap error %d\n", (int)gpio_map); //errno also set!
         exit(-1);
     }

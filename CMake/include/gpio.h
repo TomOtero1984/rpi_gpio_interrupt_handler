@@ -33,4 +33,4 @@ volatile unsigned *gpio;
 #define GPIO_PULL *(gpio + 37)     // Pull up/pull down
 #define GPIO_PULLCLK0 *(gpio + 38) // Pull up/pull down clock
 
-void setup_io()
+void setup_io();
