@@ -7,9 +7,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/utils.h"
+#include "../include/gpio.h"
 
 
 void loop() {
+    int pin = 18;
     msg_command_options();
     // Init user command char pointer
     char * usr_c = malloc(sizeof(char));
@@ -17,7 +19,11 @@ void loop() {
         usr_command(usr_c);
         switch (*usr_c) {
         case '1': {
-            printf("usr_c = %c\n", *usr_c);
+            GPIO_FALLING_EDGE_DETECT_ENABLE = 1 << pin;
+            break;
+        }
+        case '2': {
+
             break;
         }
         case 'q': {
@@ -34,6 +40,7 @@ void loop() {
 
 int main(int argc, char const *argv[])
 {
+
     // Intro message
     msg_intro();
     // main loop
