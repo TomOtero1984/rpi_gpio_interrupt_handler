@@ -20,7 +20,7 @@ void loop() {
         usr_command(usr_c);
         switch (*usr_c) {
         case '1': {
-            GPIO_FALLING_EDGE_DETECT_ENABLE = 1 << pin;
+            GPIO_HIGH_DETECT_ENABLE = 1 << pin;
             break;
         }
         case '2': {
