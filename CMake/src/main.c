@@ -12,6 +12,7 @@
 
 void loop() {
     int pin = 18;
+    INP_GPIO(pin);
     msg_command_options();
     // Init user command char pointer
     char * usr_c = malloc(sizeof(char));
@@ -44,7 +45,7 @@ void loop() {
 
 int main(int argc, char const *argv[])
 {
-
+    setup_io();
     // Intro message
     msg_intro();
     // main loop
