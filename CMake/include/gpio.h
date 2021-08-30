@@ -34,5 +34,6 @@ volatile unsigned *gpio;
 #define GPIO_PULLCLK0 *(gpio + 38) // Pull up/pull down clock
 
 #define GPIO_FALLING_EDGE_DETECT_ENABLE * (gpio + 22)
+#define GPIO_PIN_EVENT_STATUS * (gpio + 16)
 
 void setup_io();
