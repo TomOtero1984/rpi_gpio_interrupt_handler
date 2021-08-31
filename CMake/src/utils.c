@@ -9,7 +9,7 @@ void msg_intro() {
 
 void msg_command_options() {
     printf("1. Set GPIO Pin\n");
-    printf("2. Read Pin Status");
+    printf("2. Read Pin Status\n");
     printf("-----------------\n");
     printf("Q. Quit\n");
 }
