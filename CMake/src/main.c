@@ -12,6 +12,9 @@
 
 void loop() {
     int pin = 18;
+    printf("deref gpio: %d\n", *gpio);
+    printf("not deref gpio: %d\n", gpio);
+    printf("INP_GPIO: %d\n", INP_GPIO(pin));
     // INP_GPIO(pin);
     msg_command_options();
     // Init user command char pointer
@@ -26,7 +29,8 @@ void loop() {
         case '2': {
             for(int i = 0; i < 10; i++)
             {
-                printf("GPIO_PIN_EVENT_STATUS: %d\n", GPIO_PIN_EVENT_STATUS);
+                // printf("GPIO_PIN_EVENT_STATUS: %d\n", GPIO_PIN_EVENT_STATUS);
+                printButton(pin);
                 sleep(1);
             }
             break;
