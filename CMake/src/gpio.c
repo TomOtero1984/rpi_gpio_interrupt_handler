@@ -1,5 +1,15 @@
 #include "../include/gpio.h"
 
+
+void printButton(int g)
+{
+    if (GET_GPIO(g)) // !=0 <-> bit is 1 <- port is HIGH=3.3V
+        printf("Button pressed!\n");
+    else // port is LOW=0V
+        printf("Button released!\n");
+}
+
+
 void setup_io() {
     /* open /dev/mem */
     if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0) {

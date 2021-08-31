@@ -12,7 +12,7 @@
 
 void loop() {
     int pin = 18;
-    INP_GPIO(pin);
+    // INP_GPIO(pin);
     msg_command_options();
     // Init user command char pointer
     char * usr_c = malloc(sizeof(char));
@@ -26,7 +26,7 @@ void loop() {
         case '2': {
             for(int i = 0; i < 10; i++)
             {
-                printf("GPIO_PIN_EVENT_STATUS: %d\n",GPIO_PIN_EVENT_STATUS);
+                printf("GPIO_PIN_EVENT_STATUS: %d\n", GPIO_PIN_EVENT_STATUS);
                 sleep(1);
             }
             break;

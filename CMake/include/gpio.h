@@ -37,4 +37,5 @@ volatile unsigned *gpio;
 #define GPIO_HIGH_DETECT_ENABLE *(gpio + 25)
 #define GPIO_PIN_EVENT_STATUS * (gpio + 16)
 
+void printButton(int g);
 void setup_io();
