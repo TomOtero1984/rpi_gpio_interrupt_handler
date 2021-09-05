@@ -23,11 +23,20 @@ volatile unsigned *int_m;
 #define GPIO_INT2 18
 #define GPIO_INT3 19
 
+#define COLOR_DEFAULT "\033[0m"
+#define COLOR_ERROR   "\033[0;31m"
+#define COLOR_PURPLE  "\033[0;35m"
+
+
+
+void print_error(const char* msg) {
+    printf("%s[ERROR]%s %s", COLOR_ERROR, COLOR_DEFAULT, msg);
+}
 
 void setup_io() {
     /* open /dev/mem */
     if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0) {
-        printf("[ERROR] can't open /dev/mem \n");
+        print_error("can't open /dev/mem \n");
         exit(-1);
     }
 
@@ -43,7 +52,9 @@ void setup_io() {
     close(mem_fd);
 
     if (int_map == MAP_FAILED) {
-        printf("[ERROR] mmap error %d\n", (int)int_map);
+        char* err_msg;
+        sprintf(err_msg, "mmap error %d\n", (int)int_map);
+        print_error(err_msg);
         exit(-1);
     }
 
@@ -70,6 +81,11 @@ void int_disable(int regs_size, int* regs) {
 
 
 int main(int argc, char const *argv[]) {
+    printf("#####################################\n");
+    printf("### %sInterrupt Registers Test Tool%s ###\n",
+        COLOR_PURPLE, COLOR_DEFAULT);
+    printf("#####################################\n\n");
+
     // Setup mmap
     setup_io();
 
@@ -87,7 +103,7 @@ int main(int argc, char const *argv[]) {
     int gpio_int_regs_size = (int)(sizeof(gpio_int_regs) /
                                    sizeof(gpio_int_regs[0]));
     // Set Mode
-    char mode[12] = "both";
+    char mode[12] = "--check";
     if(argc > 1) {
         strcpy(mode,argv[1]);
     }
@@ -95,13 +111,16 @@ int main(int argc, char const *argv[]) {
     printf("[DEBUG] mode: %s\n", mode);
 
     // Handle Mode
-    if(strcmp(mode, "both")==0) {
+    if(strcmp(mode, "--check")==0 || strcmp(mode, "-c")==0) {
+        printf("[INFO] INT_PENDING: %x\n", INT_PENDING);
+    }
+    else if(strcmp(mode, "--both")==0 || strcmp(mode, "-b")==0) {
         int_enable(
             gpio_int_regs_size,
             gpio_int_regs
         );
 
-        sleep(1)
+        sleep(1);
 
         int_disable(
             gpio_int_regs_size,
@@ -121,7 +140,7 @@ int main(int argc, char const *argv[]) {
         );
     }
     else {
-        printf("[ERROR] Invalid mode!");
+        print_error("Invalid mode!\n");
     }
     return 0;
 }
