@@ -11,7 +11,7 @@
 
 
 void loop() {
-    int pin = 18;
+    int pin = 23;
     printf("deref gpio: %d\n", *gpio);
     printf("not deref gpio: %p\n", gpio);
     printf("INP_GPIO: %d\n", INP_GPIO(pin));
