@@ -1,0 +1,1 @@
+cmd_/home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/Module.symvers := sed 's/ko$$/o/' /home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/modules.order | scripts/mod/modpost -m -a   -o /home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/Module.symvers -e -i Module.symvers   -T -
