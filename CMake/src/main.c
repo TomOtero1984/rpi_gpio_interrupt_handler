@@ -7,9 +7,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/utils.h"
+#include "../include/gpio.h"
 
 
 void loop() {
+    int pin = 23;
+    printf("deref gpio: %d\n", *gpio);
+    printf("not deref gpio: %p\n", gpio);
+    printf("INP_GPIO: %d\n", INP_GPIO(pin));
+    // INP_GPIO(pin);
     msg_command_options();
     // Init user command char pointer
     char * usr_c = malloc(sizeof(char));
@@ -17,7 +23,16 @@ void loop() {
         usr_command(usr_c);
         switch (*usr_c) {
         case '1': {
-            printf("usr_c = %c\n", *usr_c);
+            GPIO_HIGH_DETECT_ENABLE = 1 << pin;
+            break;
+        }
+        case '2': {
+            for(int i = 0; i < 10; i++)
+            {
+                // printf("GPIO_PIN_EVENT_STATUS: %d\n", GPIO_PIN_EVENT_STATUS);
+                printButton(pin);
+                sleep(1);
+            }
             break;
         }
         case 'q': {
@@ -34,6 +49,7 @@ void loop() {
 
 int main(int argc, char const *argv[])
 {
+    setup_io();
     // Intro message
     msg_intro();
     // main loop

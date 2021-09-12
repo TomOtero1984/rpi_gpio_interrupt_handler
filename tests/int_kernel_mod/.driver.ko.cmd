@@ -1,0 +1,1 @@
+cmd_/home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/driver.ko := ld -r  -EL  --build-id=sha1  -T scripts/module.lds -o /home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/driver.ko /home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/driver.o /home/pi/Projects/rpi_gpio_interrupt_handler/tests/int_kernel_mod/driver.mod.o;  true
